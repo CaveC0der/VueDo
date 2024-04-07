@@ -1,0 +1,17 @@
+{
+  "name": "todo",
+  "private": true,
+  "version": "1.0.0",
+  "description": "VueTodo monorepo",
+  "scripts": {
+    "apps:dev": "pnpm -F \"./apps/*\" dev",
+    "build": "pnpm -r build",
+    "apps:start": "pnpm -F \"./apps/*\" start"
+  },
+  "author": "CaveC0der",
+  "license": "ISC",
+  "devDependencies": {
+    "prettier": "^3.2.5"
+  },
+  "packageManager": "pnpm@8.15.6+sha256.01c01eeb990e379b31ef19c03e9d06a14afa5250b82e81303f88721c99ff2e6f"
+}
