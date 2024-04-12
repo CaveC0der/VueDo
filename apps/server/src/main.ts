@@ -12,7 +12,7 @@ async function start() {
 
   const config = app.get(AppConfigService);
 
-  app.enableCors({ origin: config.ORIGIN });
+  app.enableCors({ origin: config.ORIGIN, credentials: true });
   app.use(helmet());
   app.use(cookieParser());
   app.useGlobalPipes(
