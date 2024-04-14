@@ -1,16 +1,16 @@
 <template>
   <div class="workspace relative min-h-dvh">
-    <router-view name="topBar" v-slot="{ Component }">
+    <router-view name="topBar" #="{ Component }">
       <transition name="top-bar" mode="out-in">
         <component :is="Component" />
       </transition>
     </router-view>
-    <router-view v-slot="{ Component }">
+    <router-view #="{ Component }">
       <transition name="default" mode="out-in">
         <component :is="Component" />
       </transition>
     </router-view>
-    <router-view name="bottomBar" v-slot="{ Component }">
+    <router-view name="bottomBar" #="{ Component }">
       <transition name="bottom-bar" mode="out-in">
         <component :is="Component" />
       </transition>
@@ -20,8 +20,8 @@
 
 <style scoped>
 .workspace {
-  --bar-transition-duration: 0.25s;
-  --default-transition-duration: 0.25s;
+  --bar-transition-duration: 0.15s;
+  --default-transition-duration: 0.15s;
 
   --bar-transition-delay: var(--default-transition-duration);
   --default-transition-delay: var(--bar-transition-duration);
@@ -38,7 +38,7 @@
 .default-enter-from,
 .default-leave-to {
   opacity: 0;
-  scale: 0.75;
+  scale: 0.9;
 }
 
 .top-bar-enter-active {

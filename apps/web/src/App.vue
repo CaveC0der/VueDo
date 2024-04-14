@@ -1,9 +1,15 @@
+<script setup lang="ts">
+import VModal from '@/components/ui/VModal.vue';
+import { DEFAULT_MODAL_TIMEOUT } from '@/common/constants';
+</script>
+
 <template>
-  <router-view v-slot="{ Component }">
+  <router-view #="{ Component }">
     <transition name="view" mode="out-in">
       <component :is="Component" />
     </transition>
   </router-view>
+  <v-modal position="bottom" variant="error" name="error" :timeout="DEFAULT_MODAL_TIMEOUT" />
 </template>
 
 <style scoped>

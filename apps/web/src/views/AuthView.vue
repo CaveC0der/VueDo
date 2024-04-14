@@ -6,7 +6,7 @@
         <h1 class="mt-5 text-center text-2xl font-bold">VueDo</h1>
       </figcaption>
     </figure>
-    <router-view v-slot="{ Component }">
+    <router-view #="{ Component }">
       <transition name="auth-form" mode="out-in">
         <component :is="Component" />
       </transition>
@@ -17,7 +17,7 @@
 <style scoped>
 .auth-form-enter-active,
 .auth-form-leave-active {
-  transition: 0.25s ease-in-out;
+  transition: 0.15s ease-in-out;
 }
 
 .auth-form-enter-from,

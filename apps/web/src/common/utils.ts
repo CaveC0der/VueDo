@@ -8,9 +8,9 @@ export const formatDate = (date: Date): string =>
     dateStyle: 'medium',
   });
 
-export const nonNullable = <T>(value: T): NonNullable<T> => {
+export const nonNullable = <T>(value: T | undefined | null): NonNullable<T> => {
   if (!value) {
-    throw new TypeError('Value is expected to be non nullable');
+    throw new TypeError('value is expected to be non nullable');
   }
 
   return value;

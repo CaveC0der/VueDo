@@ -3,24 +3,36 @@ import { computed, ref } from 'vue';
 import type { User } from '@/schemas/UserSchema';
 import AuthService from '@/services/auth';
 import type { LoginRequest } from '@/schemas/LoginRequestSchema';
+import { loginRequestSchema } from '@/schemas/LoginRequestSchema';
 import { nonNullable } from '@/common/utils';
 import type { SignupRequest } from '@/schemas/SignupRequestSchema';
+import { signupRequestSchema } from '@/schemas/SignupRequestSchema';
 
 export const useUserStore = defineStore('user', () => {
   const user = ref<User | null>(null);
 
   const User = computed(() => nonNullable(user.value));
-
   const authenticated = computed(() => Boolean(user.value));
 
-  const signup = async (data: SignupRequest) =>
-    Boolean((user.value = await AuthService.signup(data)));
+  const signup = async (data: SignupRequest) => {
+    data = await signupRequestSchema.validate(data);
 
-  const login = async (data: LoginRequest) => Boolean((user.value = await AuthService.login(data)));
+    user.value = await AuthService.signup(data);
+  };
 
-  const refresh = async () => Boolean((user.value = await AuthService.refresh()));
+  const login = async (data: LoginRequest) => {
+    data = await loginRequestSchema.validate(data);
 
-  const logout = async () => !(user.value = await AuthService.logout());
+    user.value = await AuthService.login(data);
+  };
+
+  const refresh = async () => {
+    user.value = await AuthService.refresh();
+  };
+
+  const logout = async () => {
+    user.value = await AuthService.logout();
+  };
 
   return {
     user,

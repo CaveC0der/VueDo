@@ -3,7 +3,7 @@ import type { TodoItem } from '@/types/models/TodoItem';
 
 export const STATIC_ASSETS_URL = `${import.meta.env.VITE_BACKEND_URL}/static`;
 
-export const NOTIFICATION_TIMEOUT = 3000;
+export const DEFAULT_MODAL_TIMEOUT = 2000;
 
 export const loremIpsum =
   'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut est felis, facilisis quis sollicitudin vitae, eleifend ac nibh. Vestibulum a nibh efficitur, condimentum dolor sed, commodo dui. Donec vel metus et purus rutrum iaculis id sed nisi. Curabitur porta ultricie iaculis. Integer eget lectus efficitur diam malesuada cursus sit amet vel lorem. Mauris in varius mi. Vivamus a ultrices felis. Suspendisse id vestibulum erat. Quisque convallis, odi non rutrum volutpat, nulla erat iaculis nunc, at congue lacus erat in nunc. Praesent malesuada vestibulum congue. Sed pharetra posuere tempus.';

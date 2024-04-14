@@ -46,7 +46,9 @@ const router = createRouter({
 
         const userStore = useUserStore();
 
-        if (userStore.authenticated || (await userStore.refresh())) {
+        await userStore.refresh();
+
+        if (userStore.authenticated) {
           return { name: 'lists' };
         }
       },
@@ -107,7 +109,9 @@ const router = createRouter({
 
         const userStore = useUserStore();
 
-        if (!(userStore.authenticated || (await userStore.refresh()))) {
+        await userStore.refresh();
+
+        if (!userStore.authenticated) {
           return { name: 'login' };
         }
       },

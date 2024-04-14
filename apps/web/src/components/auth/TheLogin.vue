@@ -4,23 +4,24 @@ import VInput from '@/components/ui/VInput.vue';
 import { useUserStore } from '@/stores/user';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
-import { type LoginRequest, loginRequestSchema } from '@/schemas/LoginRequestSchema';
-import VNotification from '@/components/ui/VNotification.vue';
-import useNotification from '@/composables/useNotification';
+import { type LoginRequest } from '@/schemas/LoginRequestSchema';
 import { formatError } from '@/common/utils';
+import { useModal } from '@/composables/useModal';
 
 const userStore = useUserStore();
 const router = useRouter();
 const data = ref<LoginRequest>({ email: '', password: '' });
-const { notification, showNotification, hideNotification } = useNotification();
+const { showMessage } = useModal('error');
 
 const submit = async () => {
   try {
-    if (await userStore.login(await loginRequestSchema.validate(data.value))) {
+    await userStore.login(data.value);
+
+    if (userStore.authenticated) {
       await router.push({ name: 'lists' });
     }
   } catch (e) {
-    showNotification(formatError(e));
+    showMessage(formatError(e));
   }
 };
 </script>
@@ -32,7 +33,6 @@ const submit = async () => {
       <v-input v-model="data.email" type="text" placeholder="your@mail.com" required />
       <v-input v-model="data.password" type="password" placeholder="password" required />
       <v-button class="mt-1 w-1/2 self-center">Login</v-button>
-      <v-notification :notification="notification" @hide="hideNotification" />
     </form>
     <p class="text-center text-sm text-neutral-500">
       Don't have an account yet?&nbsp;
