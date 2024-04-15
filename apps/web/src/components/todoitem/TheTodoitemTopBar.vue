@@ -11,7 +11,7 @@ defineProps<{
 
 <template>
   <v-fixed-bar position="top" class="grid grid-cols-[1fr_auto_1fr] grid-rows-1 items-center gap-3">
-    <a class="cursor-pointer rounded p-1 focus:outline-none" @click="$router.back()">
+    <a class="size-fit cursor-pointer rounded p-1 focus:outline-none" @click="$router.back()">
       <arrow-left-icon class="size-6" />
     </a>
     <h1 class="overflow-x-hidden overflow-ellipsis text-nowrap text-center font-medium">Todo</h1>

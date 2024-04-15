@@ -13,7 +13,7 @@ withDefaults(
 
 <template>
   <button
-    class="transition-all focus:outline-none"
+    class="transition-all focus:outline-none focus-visible:outline-none"
     :class="[variantClasses[variant], { 'animate-shine': pending }]"
   >
     <slot />
@@ -24,6 +24,6 @@ withDefaults(
 const variantClasses = {
   default:
     'rounded bg-neutral-700 px-3 py-1.5 font-medium hover:bg-emerald-700 active:bg-emerald-600',
-  icon: 'rounded p-1',
+  icon: 'size-fit rounded p-1',
 };
 </script>
