@@ -21,7 +21,7 @@ const logout = () => {
 
 <template>
   <v-fixed-bar position="top" class="grid grid-cols-[1fr_auto_1fr] grid-rows-1 items-center gap-3">
-    <v-button type="icon" @click="logout">
+    <v-button variant="icon" @click="logout">
       <arrow-left-icon class="size-6" />
     </v-button>
     <h1 class="truncate text-center font-medium">Lists</h1>

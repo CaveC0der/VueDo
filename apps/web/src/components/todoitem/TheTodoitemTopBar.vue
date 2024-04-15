@@ -16,10 +16,10 @@ defineProps<{
     </a>
     <h1 class="overflow-x-hidden overflow-ellipsis text-nowrap text-center font-medium">Todo</h1>
     <div class="flex gap-1 justify-self-end">
-      <v-button type="icon">
+      <v-button variant="icon">
         <pencil-icon class="size-6" />
       </v-button>
-      <v-button type="icon">
+      <v-button variant="icon">
         <trash-icon class="size-6" />
       </v-button>
     </div>

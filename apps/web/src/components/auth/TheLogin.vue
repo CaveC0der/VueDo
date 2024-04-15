@@ -7,13 +7,15 @@ import { useRouter } from 'vue-router';
 import { type LoginRequest } from '@/schemas/LoginRequestSchema';
 import { useModal } from '@/composables/useModal';
 import { formatError } from '@/common/utils';
+import useAsyncState from '@/composables/useAsyncState';
 
 const userStore = useUserStore();
 const router = useRouter();
 const data = ref<LoginRequest>({ email: '', password: '' });
 const { showMessage } = useModal('error');
 
-const { run, isPending } = userStore.useLogin(
+const { run, pending } = useAsyncState(
+  (data: LoginRequest) => userStore.login(data),
   () => {
     if (userStore.authenticated) {
       router.push({ name: 'lists' });
@@ -35,7 +37,7 @@ const submit = () => {
     <form class="relative flex flex-col gap-3" @submit.prevent="submit">
       <v-input v-model="data.email" type="text" placeholder="your@mail.com" required />
       <v-input v-model="data.password" type="password" placeholder="password" required />
-      <v-button class="mt-1 w-1/2 self-center" :isPending="isPending">Login</v-button>
+      <v-button class="mt-1 w-1/2 self-center" :pending="pending">Login</v-button>
     </form>
     <p class="text-center text-sm text-neutral-500">
       Don't have an account yet?&nbsp;

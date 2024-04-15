@@ -7,8 +7,6 @@ import { loginRequestSchema } from '@/schemas/LoginRequestSchema';
 import { nonNullable } from '@/common/utils';
 import type { SignupRequest } from '@/schemas/SignupRequestSchema';
 import { signupRequestSchema } from '@/schemas/SignupRequestSchema';
-import useAsyncState from '@/composables/useAsyncState';
-import type { onErrorCb, onFulfilledCb } from '@/types/callbacks';
 
 export const useUserStore = defineStore('user', () => {
   const user = shallowRef<User | undefined>();
@@ -36,12 +34,6 @@ export const useUserStore = defineStore('user', () => {
     user.value = await AuthService.logout();
   };
 
-  const useSignup = (onFulfilled: onFulfilledCb = () => {}, onError: onErrorCb = () => {}) =>
-    useAsyncState((data: SignupRequest) => signup(data), onFulfilled, onError);
-
-  const useLogin = (onFulfilled: onFulfilledCb = () => {}, onError: onErrorCb = () => {}) =>
-    useAsyncState((data: LoginRequest) => login(data), onFulfilled, onError);
-
   return {
     user,
     User,
@@ -50,7 +42,5 @@ export const useUserStore = defineStore('user', () => {
     login,
     refresh,
     logout,
-    useSignup,
-    useLogin,
   };
 });

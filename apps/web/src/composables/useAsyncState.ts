@@ -4,7 +4,7 @@ import type { onErrorCb, onFulfilledCb } from '@/types/callbacks';
 
 export interface AsyncState<T, Args extends any[] = []> {
   state: ShallowRef<T | undefined>;
-  isPending: Ref<boolean>;
+  pending: Ref<boolean>;
   error: ShallowRef<unknown | undefined>;
   run: (...args: Args) => Promise<void>;
 }
@@ -15,12 +15,12 @@ const useAsyncState = <T, Args extends any[] = []>(
   onError: onErrorCb = () => {},
 ): AsyncState<T, Args> => {
   const state = shallowRef<T>();
-  const isPending = ref(false);
+  const pending = ref(false);
   const error = shallowRef<unknown>();
 
   const run = async (...args: Args) => {
     try {
-      isPending.value = true;
+      pending.value = true;
 
       await promiseTimeout(3000); // TODO - delete
 
@@ -35,11 +35,11 @@ const useAsyncState = <T, Args extends any[] = []>(
       error.value = e;
       onError(e);
     } finally {
-      isPending.value = false;
+      pending.value = false;
     }
   };
 
-  return { state, isPending, error, run };
+  return { state, pending, error, run };
 };
 
 export default useAsyncState;

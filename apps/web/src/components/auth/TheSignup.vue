@@ -7,13 +7,15 @@ import { ref } from 'vue';
 import { formatError } from '@/common/utils';
 import { type SignupRequest } from '@/schemas/SignupRequestSchema';
 import { useModal } from '@/composables/useModal';
+import useAsyncState from '@/composables/useAsyncState';
 
 const userStore = useUserStore();
 const router = useRouter();
 const data = ref<SignupRequest>({ username: '', email: '', password: '' });
 const { showMessage } = useModal('error');
 
-const { run, isPending } = userStore.useSignup(
+const { run, pending } = useAsyncState(
+  (data: SignupRequest) => userStore.signup(data),
   () => {
     if (userStore.authenticated) {
       router.push({ name: 'lists' });
@@ -36,7 +38,7 @@ const submit = () => {
       <v-input v-model="data.username" placeholder="YourName" required />
       <v-input v-model="data.email" type="email" placeholder="your@mail.com" required />
       <v-input v-model="data.password" type="password" placeholder="password" required />
-      <v-button class="mt-1 w-1/2 self-center" :isPending="isPending">Sign up</v-button>
+      <v-button class="mt-1 w-1/2 self-center" :pending="pending">Sign up</v-button>
     </form>
     <p class="text-center text-sm text-neutral-500">
       Already have an account?&nbsp;

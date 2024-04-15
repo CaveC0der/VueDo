@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+  .animate-shine {
+    @apply bg-gradient-to-l from-transparent via-white/25 via-20% to-transparent;
+    background-size: 200% 100%;
+    animation: shine 1s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  @keyframes shine {
+    to {
+      background-position-x: -200%;
+    }
+  }
+}

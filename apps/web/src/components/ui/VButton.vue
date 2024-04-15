@@ -1,12 +1,12 @@
 <script setup lang="ts">
 withDefaults(
   defineProps<{
-    type?: keyof typeof variantClasses;
-    isPending?: boolean;
+    variant?: keyof typeof variantClasses;
+    pending?: boolean;
   }>(),
   {
-    type: 'default',
-    isPending: false,
+    variant: 'default',
+    pending: false,
   },
 );
 </script>
@@ -14,7 +14,7 @@ withDefaults(
 <template>
   <button
     class="transition-all focus:outline-none"
-    :class="[variantClasses[type], { 'default-pending': isPending }]"
+    :class="[variantClasses[variant], { 'animate-shine': pending }]"
   >
     <slot />
   </button>
@@ -27,17 +27,3 @@ const variantClasses = {
   icon: 'rounded p-1',
 };
 </script>
-
-<style scoped lang="postcss">
-.default-pending {
-  @apply bg-gradient-to-l from-emerald-700 via-emerald-600 via-20% to-emerald-700;
-  background-size: 200% 100%;
-  animation: shine 1s linear infinite;
-}
-
-@keyframes shine {
-  to {
-    background-position-x: -200%;
-  }
-}
-</style>

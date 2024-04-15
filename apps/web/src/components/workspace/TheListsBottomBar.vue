@@ -7,14 +7,14 @@ import VFixedBar from '@/components/ui/VFixedBar.vue';
 <template>
   <v-fixed-bar position="bottom" class="flex items-center justify-between gap-3">
     <div class="flex gap-1">
-      <v-button type="icon">
+      <v-button variant="icon">
         <adjustments-vertical-icon class="size-6" />
       </v-button>
-      <v-button type="icon">
+      <v-button variant="icon">
         <ellipsis-vertical-icon class="size-6" />
       </v-button>
     </div>
-    <v-button type="icon" class="bg-neutral-700">
+    <v-button variant="icon" class="bg-neutral-700">
       <plus-icon class="size-6" />
     </v-button>
   </v-fixed-bar>

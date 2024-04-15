@@ -52,7 +52,7 @@ onUnmounted(() => {
         <div class="p-1">
           <component :is="variants[variant].icon" class="size-6" />
         </div>
-        <v-button type="icon" @click="hide()">
+        <v-button variant="icon" @click="hide()">
           <x-mark-icon class="size-6" />
         </v-button>
       </div>
