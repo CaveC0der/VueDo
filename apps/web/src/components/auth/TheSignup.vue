@@ -13,16 +13,19 @@ const router = useRouter();
 const data = ref<SignupRequest>({ username: '', email: '', password: '' });
 const { showMessage } = useModal('error');
 
-const submit = async () => {
-  try {
-    await userStore.signup(data.value);
-
+const { run, isPending } = userStore.useSignup(
+  () => {
     if (userStore.authenticated) {
-      await router.push({ name: 'lists' });
+      router.push({ name: 'lists' });
     }
-  } catch (e) {
+  },
+  (e) => {
     showMessage(formatError(e));
-  }
+  },
+);
+
+const submit = () => {
+  run(data.value);
 };
 </script>
 
@@ -33,7 +36,7 @@ const submit = async () => {
       <v-input v-model="data.username" placeholder="YourName" required />
       <v-input v-model="data.email" type="email" placeholder="your@mail.com" required />
       <v-input v-model="data.password" type="password" placeholder="password" required />
-      <v-button class="mt-1 w-1/2 self-center">Sign up</v-button>
+      <v-button class="mt-1 w-1/2 self-center" :isPending="isPending">Sign up</v-button>
     </form>
     <p class="text-center text-sm text-neutral-500">
       Already have an account?&nbsp;

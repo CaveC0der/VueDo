@@ -35,3 +35,5 @@ export const formatError = (error: unknown): string => {
 
   return `Unexpected error: ${error}`;
 };
+
+export const promiseTimeout = (ms: number) => new Promise((r) => setTimeout(r, ms));

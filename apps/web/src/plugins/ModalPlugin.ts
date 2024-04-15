@@ -1,7 +1,7 @@
 import { type App, type ObjectPlugin } from 'vue';
 import { nonNullable } from '@/common/utils';
 import { MODAL_PLUGIN_KEY } from '@/common/injectionSymbols';
-import type { ModalControls } from '@/types/ModalControls';
+import type { ModalControls } from '@/composables/useModal';
 
 export class ModalPlugin implements ObjectPlugin {
   private static instance: ModalPlugin | undefined;

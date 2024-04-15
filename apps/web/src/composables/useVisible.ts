@@ -1,5 +1,11 @@
-import { onUnmounted, ref } from 'vue';
-import type { VisibilityControls } from '@/types/VisibilityControls';
+import { onUnmounted, type Ref, ref } from 'vue';
+
+export interface VisibilityControls {
+  visible: Ref<boolean>;
+  show: () => void;
+  hide: () => void;
+  toggle: () => void;
+}
 
 const useVisible = (timeout?: number): VisibilityControls => {
   const visible = ref<boolean>(false);

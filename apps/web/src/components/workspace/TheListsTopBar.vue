@@ -4,13 +4,18 @@ import VButton from '@/components/ui/VButton.vue';
 import VFixedBar from '@/components/ui/VFixedBar.vue';
 import { useUserStore } from '@/stores/user';
 import { useRouter } from 'vue-router';
+import { useModal } from '@/composables/useModal';
+import { formatError } from '@/common/utils';
 
 const userStore = useUserStore();
 const router = useRouter();
+const { showMessage } = useModal('error');
 
-const logout = async () => {
-  await userStore.logout();
-  await router.push({ name: 'login' });
+const logout = () => {
+  userStore.logout().catch((error) => {
+    showMessage(formatError(error));
+  });
+  router.push({ name: 'login' });
 };
 </script>
 

@@ -21,9 +21,9 @@ export default class AuthService {
     return userSchema.cast(response.data.user);
   }
 
-  static async refresh(): Promise<User | null> {
+  static async refresh(): Promise<User | undefined> {
     if (!localStorage.getItem(this.tokenKey)) {
-      return null;
+      return;
     }
 
     const response = await api.post<AuthResponse>('auth/refresh');
@@ -32,10 +32,9 @@ export default class AuthService {
     return userSchema.cast(response.data.user);
   }
 
-  static async logout(): Promise<null> {
+  static async logout(): Promise<undefined> {
     await api.delete('auth/logout');
 
     localStorage.removeItem(this.tokenKey);
-    return null;
   }
 }

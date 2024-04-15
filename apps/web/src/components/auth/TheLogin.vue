@@ -5,24 +5,27 @@ import { useUserStore } from '@/stores/user';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { type LoginRequest } from '@/schemas/LoginRequestSchema';
-import { formatError } from '@/common/utils';
 import { useModal } from '@/composables/useModal';
+import { formatError } from '@/common/utils';
 
 const userStore = useUserStore();
 const router = useRouter();
 const data = ref<LoginRequest>({ email: '', password: '' });
 const { showMessage } = useModal('error');
 
-const submit = async () => {
-  try {
-    await userStore.login(data.value);
-
+const { run, isPending } = userStore.useLogin(
+  () => {
     if (userStore.authenticated) {
-      await router.push({ name: 'lists' });
+      router.push({ name: 'lists' });
     }
-  } catch (e) {
+  },
+  (e) => {
     showMessage(formatError(e));
-  }
+  },
+);
+
+const submit = () => {
+  run(data.value);
 };
 </script>
 
@@ -32,7 +35,7 @@ const submit = async () => {
     <form class="relative flex flex-col gap-3" @submit.prevent="submit">
       <v-input v-model="data.email" type="text" placeholder="your@mail.com" required />
       <v-input v-model="data.password" type="password" placeholder="password" required />
-      <v-button class="mt-1 w-1/2 self-center">Login</v-button>
+      <v-button class="mt-1 w-1/2 self-center" :isPending="isPending">Login</v-button>
     </form>
     <p class="text-center text-sm text-neutral-500">
       Don't have an account yet?&nbsp;
