@@ -17,7 +17,7 @@
 <style scoped>
 .auth-form-enter-active,
 .auth-form-leave-active {
-  transition: 0.15s ease-in-out;
+  transition: 0.3s ease-in-out;
 }
 
 .auth-form-enter-from,

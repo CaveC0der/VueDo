@@ -14,7 +14,7 @@ import VFixedBar from '@/components/ui/VFixedBar.vue';
         <ellipsis-vertical-icon class="size-6" />
       </v-button>
     </div>
-    <v-button variant="icon" class="bg-neutral-700">
+    <v-button>
       <plus-icon class="size-6" />
     </v-button>
   </v-fixed-bar>

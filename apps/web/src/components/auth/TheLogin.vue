@@ -37,7 +37,7 @@ const submit = () => {
     <form class="relative flex flex-col gap-3" @submit.prevent="submit">
       <v-input v-model="data.email" type="text" placeholder="your@mail.com" required />
       <v-input v-model="data.password" type="password" placeholder="password" required />
-      <v-button class="mt-1 w-1/2 self-center" :pending="pending">Login</v-button>
+      <v-button class="mt-1 w-1/2 self-center py-1.5" :pending="pending">Login</v-button>
     </form>
     <p class="text-center text-sm text-neutral-500">
       Don't have an account yet?&nbsp;

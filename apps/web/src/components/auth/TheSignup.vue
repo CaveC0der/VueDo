@@ -38,7 +38,7 @@ const submit = () => {
       <v-input v-model="data.username" placeholder="YourName" required />
       <v-input v-model="data.email" type="email" placeholder="your@mail.com" required />
       <v-input v-model="data.password" type="password" placeholder="password" required />
-      <v-button class="mt-1 w-1/2 self-center" :pending="pending">Sign up</v-button>
+      <v-button class="mt-1 w-1/2 self-center py-1.5" :pending="pending">Sign up</v-button>
     </form>
     <p class="text-center text-sm text-neutral-500">
       Already have an account?&nbsp;

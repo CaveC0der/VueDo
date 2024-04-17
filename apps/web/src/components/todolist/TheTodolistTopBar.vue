@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ArrowLeftIcon, PencilIcon, TrashIcon } from '@heroicons/vue/24/outline';
 import VButton from '@/components/ui/VButton.vue';
+import VLinkIcon from '@/components/ui/VLinkIcon.vue';
 import VFixedBar from '@/components/ui/VFixedBar.vue';
 import { fakeTodoLists } from '@/common/constants';
 import type { TodoList } from '@/types/models/TodoList';
@@ -14,9 +15,9 @@ const list = fakeTodoLists.find((l) => l.id === props.listId)!;
 
 <template>
   <v-fixed-bar position="top" class="grid grid-cols-[1fr_auto_1fr] grid-rows-1 items-center gap-3">
-    <a class="size-fit cursor-pointer rounded p-1 focus:outline-none" @click="$router.back()">
+    <v-link-icon @click="$router.back()">
       <arrow-left-icon class="size-6" />
-    </a>
+    </v-link-icon>
     <h1 class="overflow-x-hidden overflow-ellipsis text-nowrap text-center font-medium">
       {{ list.title }}
     </h1>

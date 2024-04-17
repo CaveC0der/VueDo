@@ -13,8 +13,8 @@ withDefaults(
 
 <template>
   <button
-    class="transition-all focus:outline-none focus-visible:outline-none"
-    :class="[variantClasses[variant], { 'animate-shine': pending }]"
+    class="rounded p-1 transition-all focus:outline-none"
+    :class="[variantClasses[variant].initial, { [variantClasses[variant].pending]: pending }]"
   >
     <slot />
   </button>
@@ -22,8 +22,13 @@ withDefaults(
 
 <script lang="ts">
 const variantClasses = {
-  default:
-    'rounded bg-neutral-700 px-3 py-1.5 font-medium hover:bg-emerald-700 active:bg-emerald-600',
-  icon: 'size-fit rounded p-1',
+  default: {
+    initial: 'bg-neutral-700 font-medium hover:bg-emerald-700 active:bg-emerald-600',
+    pending: 'animate-shine',
+  },
+  icon: {
+    initial: 'size-fit hover:text-emerald-500',
+    pending: 'animate-pulse',
+  },
 };
 </script>

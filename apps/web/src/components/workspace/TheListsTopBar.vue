@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ArrowLeftIcon, UserIcon } from '@heroicons/vue/24/outline';
 import VButton from '@/components/ui/VButton.vue';
+import VLinkIcon from '@/components/ui/VLinkIcon.vue';
 import VFixedBar from '@/components/ui/VFixedBar.vue';
 import { useUserStore } from '@/stores/user';
 import { useRouter } from 'vue-router';
@@ -25,11 +26,8 @@ const logout = () => {
       <arrow-left-icon class="size-6" />
     </v-button>
     <h1 class="truncate text-center font-medium">Lists</h1>
-    <router-link
-      to="profile"
-      class="cursor-pointer justify-self-end rounded p-1 focus:outline-none"
-    >
+    <v-link-icon to="profile" class="justify-self-end">
       <user-icon class="size-6" />
-    </router-link>
+    </v-link-icon>
   </v-fixed-bar>
 </template>
