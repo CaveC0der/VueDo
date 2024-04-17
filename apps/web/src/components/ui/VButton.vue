@@ -13,7 +13,7 @@ withDefaults(
 
 <template>
   <button
-    class="rounded p-1 transition-all focus:outline-none"
+    class="rounded p-1 transition focus:outline-none"
     :class="[variantClasses[variant].initial, { [variantClasses[variant].pending]: pending }]"
   >
     <slot />
