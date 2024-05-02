@@ -8,7 +8,7 @@
   "scripts": {
     "build": "pnpm generate && nest build",
     "format": "prettier --write \"src/**/*.ts\"",
-    "run": "nest start",
+    "start": "nest start",
     "dev": "nest start --watch",
     "debug": "nest start --debug --watch",
     "prod": "node dist/main",
