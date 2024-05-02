@@ -6,13 +6,13 @@ import { useRouter } from 'vue-router';
 import { ref } from 'vue';
 import { formatError } from '@/common/utils';
 import { type SignupRequest } from '@/schemas/SignupRequestSchema';
-import { useModal } from '@/composables/useModal';
 import useAsyncState from '@/composables/useAsyncState';
+import { useModalsStore } from '@/stores/modals';
 
 const userStore = useUserStore();
 const router = useRouter();
 const data = ref<SignupRequest>({ username: '', email: '', password: '' });
-const { showMessage } = useModal('error');
+const { showMessage } = useModalsStore().use('error');
 
 const { run, pending } = useAsyncState(
   (data: SignupRequest) => userStore.signup(data),

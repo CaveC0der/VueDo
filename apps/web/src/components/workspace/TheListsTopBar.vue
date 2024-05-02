@@ -5,12 +5,12 @@ import VLinkIcon from '@/components/ui/VLinkIcon.vue';
 import VFixedBar from '@/components/ui/VFixedBar.vue';
 import { useUserStore } from '@/stores/user';
 import { useRouter } from 'vue-router';
-import { useModal } from '@/composables/useModal';
 import { formatError } from '@/common/utils';
+import { useModalsStore } from '@/stores/modals';
 
 const userStore = useUserStore();
 const router = useRouter();
-const { showMessage } = useModal('error');
+const { showMessage } = useModalsStore().use('error');
 
 const logout = () => {
   userStore.logout().catch((error) => {

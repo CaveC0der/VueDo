@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { onUnmounted, ref } from 'vue';
-import { useModalPlugin } from '@/composables/useModalPlugin';
 import useVisible from '@/composables/useVisible';
 import VButton from '@/components/ui/VButton.vue';
 import { XMarkIcon } from '@heroicons/vue/24/outline';
+import { useModalsStore } from '@/stores/modals';
 
 const props = withDefaults(
   defineProps<{
@@ -20,9 +20,9 @@ const props = withDefaults(
 
 const { visible, show, hide, toggle } = useVisible(props.timeout);
 const message = ref('');
-const modalPlugin = useModalPlugin();
+const modalsStore = useModalsStore();
 
-modalPlugin.register(props.name, {
+modalsStore.register(props.name, {
   visible,
   show,
   hide,
@@ -37,7 +37,7 @@ modalPlugin.register(props.name, {
 });
 
 onUnmounted(() => {
-  modalPlugin.delete(props.name);
+  modalsStore.unregister(props.name);
 });
 </script>
 

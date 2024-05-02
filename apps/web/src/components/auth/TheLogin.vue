@@ -5,14 +5,14 @@ import { useUserStore } from '@/stores/user';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { type LoginRequest } from '@/schemas/LoginRequestSchema';
-import { useModal } from '@/composables/useModal';
 import { formatError } from '@/common/utils';
 import useAsyncState from '@/composables/useAsyncState';
+import { useModalsStore } from '@/stores/modals';
 
 const userStore = useUserStore();
 const router = useRouter();
 const data = ref<LoginRequest>({ email: '', password: '' });
-const { showMessage } = useModal('error');
+const { showMessage } = useModalsStore().use('error');
 
 const { run, pending } = useAsyncState(
   (data: LoginRequest) => userStore.login(data),
