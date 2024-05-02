@@ -18,20 +18,28 @@ export const useUserStore = defineStore('user', () => {
     data = await signupRequestSchema.validate(data);
 
     user.value = await AuthService.signup(data);
+
+    return Boolean(user.value);
   };
 
   const login = async (data: LoginRequest) => {
     data = await loginRequestSchema.validate(data);
 
     user.value = await AuthService.login(data);
+
+    return Boolean(user.value);
   };
 
   const refresh = async () => {
     user.value = await AuthService.refresh();
+
+    return Boolean(user.value);
   };
 
   const logout = async () => {
     user.value = await AuthService.logout();
+
+    return !user.value;
   };
 
   return {

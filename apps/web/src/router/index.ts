@@ -46,9 +46,7 @@ const router = createRouter({
 
         const userStore = useUserStore();
 
-        await userStore.refresh();
-
-        if (userStore.authenticated) {
+        if (userStore.authenticated || (await userStore.refresh())) {
           return { name: 'lists' };
         }
       },
@@ -102,18 +100,14 @@ const router = createRouter({
         },
       ],
       redirect: { name: 'lists' },
-      beforeEnter: async (_, from) => {
-        if (from.matched.some((r) => r.name === 'auth')) {
+      beforeEnter: async () => {
+        const userStore = useUserStore();
+
+        if (userStore.authenticated || (await userStore.refresh())) {
           return;
         }
 
-        const userStore = useUserStore();
-
-        await userStore.refresh();
-
-        if (!userStore.authenticated) {
-          return { name: 'login' };
-        }
+        return { name: 'login' };
       },
     },
     {

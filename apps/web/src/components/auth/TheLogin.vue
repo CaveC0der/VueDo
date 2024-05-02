@@ -16,8 +16,8 @@ const { showMessage } = useModal('error');
 
 const { run, pending } = useAsyncState(
   (data: LoginRequest) => userStore.login(data),
-  () => {
-    if (userStore.authenticated) {
+  (authenticated: boolean) => {
+    if (authenticated) {
       router.push({ name: 'lists' });
     }
   },
