@@ -2,39 +2,29 @@ import { createRouter, createWebHistory } from 'vue-router';
 import TheLogin from '@/components/auth/TheLogin.vue';
 import AuthView from '@/views/AuthView.vue';
 import TheSignup from '@/components/auth/TheSignup.vue';
-import WorkspaceView from '@/views/WorkspaceView.vue';
-import TheListsTopBar from '@/components/workspace/TheListsTopBar.vue';
-import TheLists from '@/components/workspace/TheLists.vue';
-import TheListsBottomBar from '@/components/workspace/TheListsBottomBar.vue';
-import TheTodolist from '@/components/todolist/TheTodolist.vue';
-import TheTodolistTopBar from '@/components/todolist/TheTodolistTopBar.vue';
-import TheTodolistBottomBar from '@/components/todolist/TheTodolistBottomBar.vue';
-import TheTodoitem from '@/components/todoitem/TheTodoitem.vue';
-import TheTodoitemTopBar from '@/components/todoitem/TheTodoitemTopBar.vue';
-import TheProfileTopBar from '@/components/profile/TheProfileTopBar.vue';
-import TheProfile from '@/components/profile/TheProfile.vue';
-import TheNotFoundTopBar from '@/components/notfound/TheNotFoundTopBar.vue';
-import TheNotFound from '@/components/notfound/TheNotFound.vue';
 import { useUserStore } from '@/stores/user';
+import ListsView from '@/views/ListsView.vue';
+import NotFoundView from '@/views/NotFoundView.vue';
+import TodolistView from '@/views/TodolistView.vue';
+import TodoitemView from '@/views/TodoitemView.vue';
+import ProfileView from '@/views/ProfileView.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       name: 'auth',
-      path: '/auth',
+      path: '/',
       component: AuthView,
       children: [
         {
           name: 'login',
           path: 'login',
-          alias: '/login',
           component: TheLogin,
         },
         {
           name: 'signup',
           path: 'signup',
-          alias: '/signup',
           component: TheSignup,
         },
       ],
@@ -53,50 +43,29 @@ const router = createRouter({
     },
     {
       name: 'workspace',
-      path: '/workspace',
-      alias: '/',
-      component: WorkspaceView,
+      path: '/',
       children: [
         {
           name: 'lists',
           path: 'lists',
-          components: {
-            topBar: TheListsTopBar,
-            default: TheLists,
-            bottomBar: TheListsBottomBar,
-          },
+          component: ListsView,
         },
         {
           name: 'list',
           path: 'lists/:listId',
-          components: {
-            topBar: TheTodolistTopBar,
-            default: TheTodolist,
-            bottomBar: TheTodolistBottomBar,
-          },
-          props: {
-            topBar: (route) => ({ listId: route.params.listId }),
-          },
+          component: TodolistView,
+          props: (route) => ({ listId: route.params.listId }),
         },
         {
           name: 'item',
           path: 'lists/:listId/items/:itemId',
-          components: {
-            topBar: TheTodoitemTopBar,
-            default: TheTodoitem,
-          },
-          props: {
-            topBar: (route) => ({ itemId: route.params.itemId }),
-            default: (route) => ({ itemId: route.params.itemId }),
-          },
+          component: TodoitemView,
+          props: (route) => ({ itemId: route.params.itemId }),
         },
         {
           name: 'profile',
           path: 'profile',
-          components: {
-            topBar: TheProfileTopBar,
-            default: TheProfile,
-          },
+          component: ProfileView,
         },
       ],
       redirect: { name: 'lists' },
@@ -111,18 +80,9 @@ const router = createRouter({
       },
     },
     {
+      name: 'not-found',
       path: '/:pathMatch(.*)*',
-      component: WorkspaceView,
-      children: [
-        {
-          name: 'not-found',
-          path: '',
-          components: {
-            topBar: TheNotFoundTopBar,
-            default: TheNotFound,
-          },
-        },
-      ],
+      component: NotFoundView,
     },
   ],
 });

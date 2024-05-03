@@ -32,7 +32,7 @@ const submit = () => {
 </script>
 
 <template>
-  <div class="flex flex-col gap-5">
+  <section class="flex flex-col gap-5">
     <h2 class="text-center text-xl font-medium">Create an account</h2>
     <form class="relative flex flex-col gap-3" @submit.prevent="submit">
       <v-input v-model="data.username" placeholder="YourName" required />
@@ -49,5 +49,5 @@ const submit = () => {
         Login
       </router-link>
     </p>
-  </div>
+  </section>
 </template>

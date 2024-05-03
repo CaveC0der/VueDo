@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import ListItem from '@/components/workspace/ListItem.vue';
+import ListItem from '@/components/lists/ListItem.vue';
 import { fakeTodoLists } from '@/common/constants';
 </script>
 

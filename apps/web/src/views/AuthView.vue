@@ -1,5 +1,5 @@
 <template>
-  <div class="relative flex h-dvh flex-col justify-end overflow-hidden p-5">
+  <main class="relative flex h-dvh flex-col justify-end overflow-hidden p-5">
     <figure class="absolute inset-0 m-auto h-fit w-1/2">
       <img src="@/assets/logo.svg" alt="logo" class="drop-shadow-[0_0_1rem_rgba(16,185,129,0.5)]" />
       <figcaption>
@@ -11,13 +11,13 @@
         <component :is="Component" />
       </transition>
     </router-view>
-  </div>
+  </main>
 </template>
 
 <style scoped>
 .auth-form-enter-active,
 .auth-form-leave-active {
-  transition: 0.3s ease-in-out;
+  transition: 0.25s ease-in-out;
 }
 
 .auth-form-enter-from,

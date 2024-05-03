@@ -22,7 +22,7 @@ const useAsyncState = <T, Args extends any[] = []>(
     try {
       pending.value = true;
 
-      await promiseTimeout(3000); // TODO - delete
+      await promiseTimeout(1000); // TODO - delete
 
       if (typeof promise === 'function') {
         state.value = await promise(...args);
